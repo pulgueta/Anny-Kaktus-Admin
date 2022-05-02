@@ -10,3 +10,5 @@ The admin panel has the following features:
 - Deleting products from the main database (Firestore & Cloud Storage).
 
 ## The actions taken in this panel will be reflected in the user interface as well.
+
+The link to this panel is not going to be available in this repository, but some screenshots will be attached once the project is finished.
