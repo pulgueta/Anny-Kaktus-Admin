@@ -81,7 +81,7 @@ const Admin = () => {
         title: data.title,
         price: data.price,
         description: data.description,
-        createdAt: new Date(),
+        imgURL: data.image,
       })
         .then(() => {
           toast.success("Producto añadido correctamente");
@@ -94,6 +94,7 @@ const Admin = () => {
         title: "",
         price: "",
         description: "",
+        image: null,
       });
     }
   };
