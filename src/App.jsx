@@ -1,6 +1,10 @@
 import React, {useContext} from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
+import Admin from './components/Admin';
+import Login from './components/Login';
+import NotFound from './components/NotFound';
+
 import { AuthContext, AuthContextProvider } from "./context/AuthContext";
 
 const App = () => {

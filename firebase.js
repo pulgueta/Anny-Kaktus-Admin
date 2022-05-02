@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { collection, getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { getStorage } from "firebase/storage";
-import { FIREBASE_API_KEY, FIREBASE_APP_ID } from "./firebase";
+import { FIREBASE_API_KEY, FIREBASE_APP_ID } from "./api";
 
 const firebaseConfig = {
   //apiKey: import.meta.VITE_FIREBASE_KEY ---> NOT working!

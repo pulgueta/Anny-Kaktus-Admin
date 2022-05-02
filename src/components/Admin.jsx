@@ -4,7 +4,7 @@ import { addDoc } from "firebase/firestore";
 import { uploadBytesResumable, getDownloadURL, ref } from "firebase/storage";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 
-import { productos } from "../firebase";
+import { productos } from "../../firebase";
 
 const Admin = () => {
   const id = useId();
