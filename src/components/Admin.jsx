@@ -30,7 +30,7 @@ const Admin = () => {
         title: title,
         price: price,
         description: description,
-        imgURL: image,
+        // url: image,
       })
         .then(() => {
           toast.success("Producto añadido correctamente");
@@ -136,6 +136,7 @@ const Admin = () => {
           >
             Agregar
           </button>
+          
         </form>
       </div>
     </HelmetProvider>
