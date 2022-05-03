@@ -1,70 +1,24 @@
 import React, { useState, useId, useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { addDoc } from "firebase/firestore";
-import { uploadBytesResumable, getDownloadURL, ref } from "firebase/storage";
+import { uploadBytes, getDownloadURL, ref, v4 } from "firebase/storage";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 
-import { productos } from "../../firebase";
+import { productos, storage } from "../../firebase";
 
 const Admin = () => {
   const id = useId();
-  const [data, setData] = useState({
-    title: "",
-    price: "",
-    description: "",
-    image: null,
-  });
+  
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
+  const [image, setImage] = useState(null);
 
-  const titleChange = (ev) => {
-    setData({ ...data, title: ev.target.value });
-  };
-
-  const priceChange = (ev) => {
-    setData({ ...data, price: ev.target.value });
-  };
-
-  const descChange = (ev) => {
-    setData({ ...data, description: ev.target.value });
-  };
-
-  const imageChange = (ev) => {
-    setData({ ...data, image: ev.target.files[0] });
-  };
-
-  useEffect(() => {
-    const uploadFile = async () => {
-      const prodStorage = ref(storage, data.name);
-      const uploadTask = uploadBytesResumable(prodStorage, data.image);
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {
-          const progress =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-
-          switch (snapshot.state) {
-            case "paused":
-              toast.info("Upload paused");
-              break;
-            case "running":
-              toast.info(`Uploading... ${progress.toFixed(2)}%`);
-              break;
-            default:
-              break;
-          }
-        },
-        (error) => {
-          toast.error(error.message);
-        },
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            setData((prev) => ({ ...prev, image: downloadURL }));
-          });
-        }
-      );
-    };
-    data.file && uploadFile();
-  }, [data.image]);
-
+  const uploadImage = () => {
+    if (setImage === null) return;
+    const imgRef = ref(storage, `productsImages/${image.name + v4()}`)
+  }
+  
   const createProduct = async (e) => {
     e.preventDefault();
     if (
@@ -104,10 +58,10 @@ const Admin = () => {
       <Helmet>
         <title>Añadir productos</title>
       </Helmet>
-      <div className="h-[70vh] w-screen grid place-content-center place-self-center mt-4 md:mt-0 lg:mt-0">
+      <div className="h-screen w-screen bg-neutral-300 grid place-content-center place-self-center mt-4 md:mt-0 lg:mt-0">
         <Toaster />
         <form
-          className="p-6 border-[1px] border-gray-200 flex flex-col w-[350px] md:w-[540px] shadow-lg rounded-xl"
+          className="p-6 border-[1px] border-gray-200 bg-slate-50 flex flex-col w-[350px] md:w-[540px] shadow-lg rounded-xl"
           onSubmit={createProduct}
         >
           <input
@@ -115,8 +69,8 @@ const Admin = () => {
             autoComplete="off"
             id={id}
             placeholder="Título"
-            onChange={titleChange}
-            value={data.title}
+            onChange={(e) => setTitle(e.target.value)}
+            value={title}
             className="my-3 p-3 w-full rounded-md border-2 border-gray-200 outline-flora-base"
           />
           <input
@@ -124,8 +78,8 @@ const Admin = () => {
             autoComplete="off"
             id={id}
             placeholder="Precio"
-            onChange={priceChange}
-            value={data.price}
+            onChange={(e) => setPrice(e.target.value)}
+            value={price}
             className="my-3 p-3 w-full rounded-md border-2 border-gray-200 outline-flora-base"
           />
           <textarea
@@ -133,8 +87,8 @@ const Admin = () => {
             autoComplete="off"
             id={id}
             maxLength="155"
-            onChange={descChange}
-            value={data.description}
+            onChange={(e) => setDescription(e.target.value)}
+            value={description}
             className="my-3 p-3 w-full rounded-md border-2 border-gray-200 outline-flora-base"
           />
           <input
@@ -143,7 +97,7 @@ const Admin = () => {
             id={id}
             multiple
             accept="image/*"
-            onChange={imageChange}
+            onChange={(e) => setImage(e.target.files[0])}
             className="h-14 text-flora-black file:transition-all file:duration-300 file:hover:text-flora-white file:hover:bg-flora-secondhover file:px-3 file:cursor-pointer file:text-flora-white file:h-full file:w-2/2 file:bg-flora-second file:border-0 rounded-md my-3 bg-flora-white"
           />
           <button

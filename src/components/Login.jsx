@@ -13,6 +13,8 @@ const Login = () => {
     email: "",
     password: "",
   });
+
+
   const navigate = useNavigate();
   const { dispatch } = useContext(AuthContext);
 
@@ -28,7 +30,7 @@ const Login = () => {
       .then((userCredential) => {
         const user = userCredential.user;
         dispatch({ type: "LOGIN", payload: user });
-        toast.success(`Bienvenido ${user.email}`);
+        toast.success(`Bienvenido(a) ${user.email}`);
         navigate("/admin");
       })
       .catch((err) => {
