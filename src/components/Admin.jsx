@@ -1,57 +1,86 @@
 import React, { useState, useId, useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { addDoc } from "firebase/firestore";
-import { uploadBytes, getDownloadURL, ref, v4 } from "firebase/storage";
+import { uploadBytesResumable, getDownloadURL, ref } from "firebase/storage";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 
 import { productos, storage } from "../../firebase";
 
 const Admin = () => {
   const id = useId();
-  
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [image, setImage] = useState(null);
 
-  const uploadImage = () => {
-    if (setImage === null) return;
-    const imgRef = ref(storage, `productsImages/${image.name + v4()}`)
-  }
-  
   const createProduct = async (e) => {
     e.preventDefault();
     if (
-      data.title.length === 0 ||
-      data.price.length === 0 ||
-      data.description.length === 0 ||
-      data.image === null
+      title.length === 0 ||
+      price.length === 0 ||
+      description.length === 0 ||
+      image === null
     ) {
       toast.error("¡Debes llenar todos los campos!");
 
       return false;
     } else {
       await addDoc(productos, {
-        title: data.title,
-        price: data.price,
-        description: data.description,
-        imgURL: data.image,
+        title: title,
+        price: price,
+        description: description,
+        imgURL: image,
       })
         .then(() => {
           toast.success("Producto añadido correctamente");
+          console.log({title, price, description, imgURL});
         })
         .catch(() => {
           toast.error("Ocurrió un error...");
         });
 
-      setData({
-        title: "",
-        price: "",
-        description: "",
-        image: null,
-      });
+      title: "";
+      price: "";
+      description: "";
+      image: null;
     }
   };
+  const uploadImage = () => {
+    if (setImage === null) return;
+    const imgRef = ref(storage, `productsImages/${Date.now() + image.name}`);
+    const imgUpload = uploadBytesResumable(imgRef, image);
+
+    imgUpload.on(
+      "state_changed",
+      (snapshot) => {
+        const progress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log("Upload is " + progress + "% done");
+
+        switch (snapshot.state) {
+          case "paused":
+            console.log("Upload is paused");
+            break;
+          case "running":
+            console.log("Upload is running");
+            break;
+          default:
+            break;
+        }
+      },
+      (err) => {
+        console.log(err);
+      },
+      () => {
+        getDownloadURL(imgUpload.snapshot.ref).then((url) => {
+          console.log(`file available at ${url}`);
+          setImage(url);
+        });
+      }
+    );
+  };
+
 
   return (
     <HelmetProvider>
@@ -102,6 +131,7 @@ const Admin = () => {
           />
           <button
             type="submit"
+            onClick={uploadImage}
             className="bg-flora-base p-4 rounded-md font-semibold text-flora-white transition-all duration-300 hover:bg-green-600"
           >
             Agregar
