@@ -52,7 +52,10 @@ const Admin = () => {
     event.preventDefault();
     console.log(event.target.files[0]);
     // if (setImage === null) return;
-    const imgRef = ref(storage, `productsImages/${Date.now() + event.target.files[0].name}`);
+    const imgRef = ref(
+      storage,
+      `productsImages/${Date.now() + event.target.files[0].name}`
+    );
     const imgUpload = uploadBytesResumable(imgRef, event.target.files[0]);
 
     imgUpload.on(
