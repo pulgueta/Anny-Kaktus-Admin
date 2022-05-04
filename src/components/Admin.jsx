@@ -26,15 +26,16 @@ const Admin = () => {
 
       return false;
     } else {
+      console.log(title, price, description, image);
       await addDoc(productos, {
         title: title,
         price: price,
         description: description,
-        // url: image,
+        url: image,
       })
         .then(() => {
           toast.success("Producto añadido correctamente");
-          console.log({title, price, description, imgURL});
+          console.log({ title, price, description, image });
         })
         .catch(() => {
           toast.error("Ocurrió un error...");
@@ -46,10 +47,13 @@ const Admin = () => {
       image: null;
     }
   };
-  const uploadImage = () => {
-    if (setImage === null) return;
-    const imgRef = ref(storage, `productsImages/${Date.now() + image.name}`);
-    const imgUpload = uploadBytesResumable(imgRef, image);
+
+  const uploadImage = (event) => {
+    event.preventDefault();
+    console.log(event.target.files[0]);
+    // if (setImage === null) return;
+    const imgRef = ref(storage, `productsImages/${Date.now() + event.target.files[0].name}`);
+    const imgUpload = uploadBytesResumable(imgRef, event.target.files[0]);
 
     imgUpload.on(
       "state_changed",
@@ -80,7 +84,6 @@ const Admin = () => {
       }
     );
   };
-
 
   return (
     <HelmetProvider>
@@ -126,17 +129,17 @@ const Admin = () => {
             id={id}
             multiple
             accept="image/*"
-            onChange={(e) => setImage(e.target.files[0])}
+            onChange={uploadImage}
+            // onClick={(e) => uploadImage(e.target.file[0])}
             className="h-14 text-flora-black file:transition-all file:duration-300 file:hover:text-flora-white file:hover:bg-flora-secondhover file:px-3 file:cursor-pointer file:text-flora-white file:h-full file:w-2/2 file:bg-flora-second file:border-0 rounded-md my-3 bg-flora-white"
           />
           <button
+            // onClick={uploadImage}
             type="submit"
-            onClick={uploadImage}
             className="bg-flora-base p-4 rounded-md font-semibold text-flora-white transition-all duration-300 hover:bg-green-600"
           >
             Agregar
           </button>
-          
         </form>
       </div>
     </HelmetProvider>
