@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "anny-kaktus"
+  },
+  "targets": {
+    "anny-kaktus": {
+      "hosting": {
+        "admin": [
+          "admin-anny-kaktus"
+        ]
+      }
+    }
   }
 }
