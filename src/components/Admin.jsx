@@ -36,7 +36,10 @@ const Admin = () => {
       })
         .then(() => {
           toast.success("Producto añadido correctamente");
-          console.log({ title, price, description, image });
+          setTitle("");
+          setDescription("");
+          setPrice("");
+          setImage(null);
         })
         .catch(() => {
           toast.error("Ocurrió un error...");
@@ -59,7 +62,7 @@ const Admin = () => {
       (snapshot) => {
         const progress =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log("Upload is " + progress + "% done");
+        toast.info("Upload is " + progress + "% done");
 
         switch (snapshot.state) {
           case "paused":
@@ -115,7 +118,7 @@ const Admin = () => {
             className="my-3 p-3 w-full rounded-md border-2 border-gray-200 outline-flora-base"
           />
           <textarea
-            placeholder="Descripción"
+            placeholder="Descripción (máx. 23 palabras)"
             autoComplete="off"
             id={id}
             maxLength="155"
