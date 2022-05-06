@@ -1,10 +1,11 @@
-import React, { useState, useId, useEffect } from "react";
+import React, { useState, useId } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { addDoc } from "firebase/firestore";
 import { uploadBytesResumable, getDownloadURL, ref } from "firebase/storage";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 
 import { productos, storage } from "../../firebase";
+import Navbar from "./Navbar";
 
 const Admin = () => {
   const id = useId();
@@ -40,11 +41,6 @@ const Admin = () => {
         .catch(() => {
           toast.error("Ocurrió un error...");
         });
-
-      title: "";
-      price: "";
-      description: "";
-      image: null;
     }
   };
 
@@ -93,7 +89,8 @@ const Admin = () => {
       <Helmet>
         <title>Añadir productos</title>
       </Helmet>
-      <div className="h-screen w-screen bg-neutral-300 grid place-content-center place-self-center mt-4 md:mt-0 lg:mt-0">
+      <Navbar />
+      <div className="h-[calc(100vh-64px)] w-screen bg-neutral-300 grid place-content-center place-self-center md:mt-0 lg:mt-0">
         <Toaster />
         <form
           className="p-6 border-[1px] border-gray-200 bg-slate-50 flex flex-col w-[350px] md:w-[540px] shadow-lg rounded-xl"
