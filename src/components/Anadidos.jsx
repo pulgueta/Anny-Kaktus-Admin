@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
+import Navbar from "./Navbar";
 
 const Anadidos = () => {
   return (
-    <div>Añadidos</div>
-  )
-}
+    <>
+      <Navbar />
+      <div>Añadidos</div>
+    </>
+  );
+};
 
-export default Anadidos
+export default Anadidos;

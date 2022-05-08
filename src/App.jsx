@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import Admin from "./components/Admin";
-import Navbar from "./components/Navbar";
 import Login from "./components/Login";
 import Anadidos from "./components/Anadidos";
 import NotFound from "./components/NotFound";
@@ -24,18 +23,14 @@ const App = () => {
           path="/admin"
           element={
             <RequiredAuth>
-              <Navbar>
                 <Admin />
-              </Navbar>
             </RequiredAuth>
           }
         />
         <Route
           path="/anadidos"
           element={
-            <Navbar>
               <Anadidos />
-            </Navbar>
           }
         />
 
