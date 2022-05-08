@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 import { collection, getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { getStorage } from "firebase/storage";
@@ -13,9 +14,11 @@ const firebaseConfig = {
   messagingSenderId: "471743892676",
   // appId: import.meta.VITE_FIREBASE_APP_ID,
   appId: FIREBASE_APP_ID,
+  measurementId: "G-8ZL4G3NL2D"
 };
 
 const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 export const db = getFirestore(app);
 export const productos = collection(db, "productos");
 export const auth = getAuth();
