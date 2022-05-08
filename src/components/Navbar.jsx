@@ -12,11 +12,9 @@ const Navbar = () => {
       <ul className="hidden md:flex font-medium">
         <motion.li
           initial={{
-            y: -60,
             opacity: 0,
           }}
           animate={{
-            y: 0,
             opacity: 1,
             transition: {
               duration: 1,
@@ -29,11 +27,9 @@ const Navbar = () => {
         </motion.li>
         <motion.li
           initial={{
-            y: -60,
             opacity: 0,
           }}
           animate={{
-            y: 0,
             opacity: 1,
             transition: {
               duration: 1,

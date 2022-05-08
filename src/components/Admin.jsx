@@ -5,7 +5,6 @@ import { uploadBytesResumable, getDownloadURL, ref } from "firebase/storage";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 
 import { productos, storage } from "../../firebase";
-import Navbar from "./Navbar";
 
 const Admin = () => {
   const id = useId();
@@ -92,7 +91,6 @@ const Admin = () => {
       <Helmet>
         <title>Añadir productos</title>
       </Helmet>
-      <Navbar />
       <div className="h-[calc(100vh-64px)] w-screen bg-neutral-300 grid place-content-center place-self-center md:mt-0 lg:mt-0">
         <Toaster />
         <form

@@ -24,11 +24,20 @@ const App = () => {
           path="/admin"
           element={
             <RequiredAuth>
-              <Admin />
+              <Navbar>
+                <Admin />
+              </Navbar>
             </RequiredAuth>
           }
         />
-        <Route path="/anadidos" element={<Anadidos />} />
+        <Route
+          path="/anadidos"
+          element={
+            <Navbar>
+              <Anadidos />
+            </Navbar>
+          }
+        />
 
         <Route path="*" element={<NotFound />} />
       </Routes>
