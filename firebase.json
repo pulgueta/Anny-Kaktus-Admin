@@ -4,6 +4,14 @@
     "indexes": "firestore.indexes.json"
   },
   "hosting": {
+    "rewrites": [{
+      "source": "/public/**",
+      "destination": "/index.html"
+    },
+    {
+      "source": "**",
+      "destination": "/index.html"
+    }],
     "target": "admin",
     "public": "public",
     "ignore": [

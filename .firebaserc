@@ -7,6 +7,9 @@
       "hosting": {
         "admin": [
           "admin-anny-kaktus"
+        ],
+        "ecommerce": [
+          "annykaktus"
         ]
       }
     }
