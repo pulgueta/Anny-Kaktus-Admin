@@ -1,19 +1,21 @@
-import React, { useState, useId } from "react";
+import React, { useState, useId, useRef } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { addDoc } from "firebase/firestore";
 import { uploadBytesResumable, getDownloadURL, ref } from "firebase/storage";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 
 import { productos, storage } from "../../firebase";
-import Navbar from './Navbar'
+import Navbar from "./Navbar";
 
 const Admin = () => {
   const id = useId();
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
+  const [price, setPrice] = useState();
   const [image, setImage] = useState(null);
+
+  const addForm = useRef();
 
   const createProduct = async (e) => {
     e.preventDefault();
@@ -23,6 +25,7 @@ const Admin = () => {
       description.length === 0 ||
       image === null
     ) {
+      toast.error(e.error);
       toast.error("¡Debes llenar todos los campos!");
 
       return false;
@@ -38,8 +41,10 @@ const Admin = () => {
           toast.success("Producto añadido correctamente");
           setTitle("");
           setDescription("");
-          setPrice("");
+          setPrice();
           setImage(null);
+
+          addForm.current.reset();
         })
         .catch(() => {
           toast.error("Ocurrió un error...");
@@ -62,7 +67,10 @@ const Admin = () => {
       (snapshot) => {
         const progress =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        toast.info("Upload is " + progress + "% done");
+        toast("Subida al " + progress + "%", {
+          icon: "🥸",
+          duration: 1000,
+        });
 
         switch (snapshot.state) {
           case "paused":
@@ -96,6 +104,7 @@ const Admin = () => {
       <div className="h-[calc(100vh-64px)] w-screen bg-neutral-300 grid place-content-center place-self-center md:mt-0 lg:mt-0">
         <Toaster />
         <form
+          ref={addForm}
           className="p-6 border-[1px] border-gray-200 bg-slate-50 flex flex-col w-[350px] md:w-[540px] shadow-lg rounded-xl"
           onSubmit={createProduct}
         >
