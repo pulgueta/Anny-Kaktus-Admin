@@ -25,7 +25,6 @@ const Admin = () => {
       description.length === 0 ||
       image === null
     ) {
-      toast.error(e.error);
       toast.error("¡Debes llenar todos los campos!");
 
       return false;
@@ -33,7 +32,7 @@ const Admin = () => {
       console.log(title, price, description, image);
       await addDoc(productos, {
         title: title,
-        price: price,
+        price: parseInt(price),
         description: description,
         url: image,
       })
@@ -69,7 +68,7 @@ const Admin = () => {
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         toast("Subida al " + progress + "%", {
           icon: "🥸",
-          duration: 1000,
+          duration: 1000, 
         });
 
         switch (snapshot.state) {

@@ -10,7 +10,7 @@ import { AuthContext } from "./context/AuthContext";
 
 const App = () => {
   const { currentUser } = useContext(AuthContext);
-
+  
   const RequiredAuth = ({ children }) => {
     return currentUser ? children : <Navigate to="/" />;
   };
