@@ -16,6 +16,7 @@ const Admin = () => {
   const [image, setImage] = useState(null);
 
   const addForm = useRef();
+  // esto es cuando se le da al botón
 
   const createProduct = async (e) => {
     e.preventDefault();
@@ -51,6 +52,7 @@ const Admin = () => {
     }
   };
 
+  // esta es el onchange de la imagen
   const uploadImage = (event) => {
     event.preventDefault();
     console.log(event.target.files[0]);
@@ -68,7 +70,7 @@ const Admin = () => {
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         toast("Subida al " + progress + "%", {
           icon: "🥸",
-          duration: 1000, 
+          duration: 1000,
         });
 
         switch (snapshot.state) {
@@ -138,9 +140,11 @@ const Admin = () => {
             type="file"
             name="imagen"
             id={id}
-            multiple
             accept="image/*"
             onChange={uploadImage}
+            disabled={
+              title !== "" && price !== "" && description !== "" ? false : true
+            }
             // onClick={(e) => uploadImage(e.target.file[0])}
             className="h-14 text-flora-black file:transition-all file:duration-300 file:hover:text-flora-white file:hover:bg-flora-secondhover file:px-3 file:cursor-pointer file:text-flora-white file:h-full file:w-2/2 file:bg-flora-second file:border-0 rounded-md my-3 bg-flora-white"
           />
