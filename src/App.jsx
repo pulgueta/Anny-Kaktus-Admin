@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
-import Admin from "./components/Admin";
-import Login from "./components/Login";
-import Anadidos from "./components/Anadidos";
-import NotFound from "./components/NotFound";
+import Navbar from "./components/Navbar";
+import Admin from "./views/Admin";
+import Login from "./views/Login";
+import Anadidos from "./views/Anadidos";
+import NotFound from "./views/NotFound";
 
 import { AuthContext } from "./context/AuthContext";
 
@@ -17,6 +18,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
+     {currentUser ? <Navbar /> : null}
       <Routes>
         <Route path="/" element={<Login />} />
         <Route

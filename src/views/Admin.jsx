@@ -5,7 +5,6 @@ import { uploadBytesResumable, getDownloadURL, ref } from "firebase/storage";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 
 import { productos, storage } from "../../firebase";
-import Navbar from "./Navbar";
 
 const Admin = () => {
   const id = useId();
@@ -101,9 +100,11 @@ const Admin = () => {
       <Helmet>
         <title>Añadir productos</title>
       </Helmet>
-      <Navbar />
       <div className="h-[calc(100vh-64px)] w-screen bg-neutral-300 grid place-content-center place-self-center md:mt-0 lg:mt-0">
         <Toaster />
+        <header className="w-full py-4 flex items-center justify-center">
+          <h1 className="text-xl font-medium">Añadir productos</h1>
+        </header>
         <form
           ref={addForm}
           className="p-6 border-[1px] border-gray-200 bg-slate-50 flex flex-col w-[350px] md:w-[540px] shadow-lg rounded-xl"
@@ -112,7 +113,7 @@ const Admin = () => {
           <input
             type="text"
             autoComplete="off"
-            id={id}
+            id={id + Date.now()}
             placeholder="Título"
             onChange={(e) => setTitle(e.target.value)}
             value={title}
@@ -121,7 +122,7 @@ const Admin = () => {
           <input
             type="number"
             autoComplete="off"
-            id={id}
+            id={id + Date.now() + 1}
             placeholder="Precio"
             onChange={(e) => setPrice(e.target.value)}
             value={price}
@@ -130,7 +131,7 @@ const Admin = () => {
           <textarea
             placeholder="Descripción (máx. 23 palabras)"
             autoComplete="off"
-            id={id}
+            id={id + Date.now() + 2}
             maxLength="155"
             onChange={(e) => setDescription(e.target.value)}
             value={description}
@@ -139,7 +140,7 @@ const Admin = () => {
           <input
             type="file"
             name="imagen"
-            id={id}
+            id={id + Date.now() + 3}
             accept="image/*"
             onChange={uploadImage}
             disabled={

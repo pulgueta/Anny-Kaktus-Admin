@@ -7,9 +7,14 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const handleClick = () => setIsOpen(!isOpen);
 
+  const signOutUser = () => {
+    localStorage.removeItem("user");
+    window.location.reload();
+  };
+
   return (
-    <nav className="w-full h-16 flex justify-around items-center bg-flora-base text-flora-white">
-      <ul className="hidden md:flex font-medium">
+    <nav className="w-full px-10 h-16 flex justify-end items-center bg-flora-base text-flora-white">
+      <ul className="hidden md:flex md:items-center font-medium">
         <motion.li
           initial={{
             opacity: 0,
@@ -41,6 +46,26 @@ const Navbar = () => {
         >
           <Link to={"/anadidos"}>Ver productos</Link>
         </motion.li>
+        <motion.li
+          initial={{
+            opacity: 0,
+          }}
+          animate={{
+            opacity: 1,
+            transition: {
+              duration: 1,
+              delay: 0.5,
+              type: "spring",
+            },
+          }}
+        >
+          <button
+            onClick={signOutUser}
+            className="bg-flora-second px-3 py-2 rounded-md hover:bg-red-600 transition-all duration-300"
+          >
+            Cerrar sesión
+          </button>
+        </motion.li>
       </ul>
 
       <motion.div
@@ -66,7 +91,7 @@ const Navbar = () => {
         className={
           !isOpen
             ? "absolute top-[-100%] left-0 w-screen h-[50vh] bg-flora-base flex flex-col justify-center items-center rounded-b-2xl ease-in-out duration-1000"
-            : "absolute top-[50px] left-0 w-screen h-[30vh] bg-flora-base shadow-sm flex flex-col justify-center items-center rounded-b-2xl ease-in-out duration-1000"
+            : "absolute top-[50px] left-0 w-screen h-[40vh] bg-flora-base shadow-sm flex flex-col justify-center items-center rounded-b-2xl ease-in-out duration-1000"
         }
       >
         <li className="mobile">
@@ -75,9 +100,17 @@ const Navbar = () => {
           </Link>
         </li>
         <li className="mobile">
-          <Link to={"/añadidos"} onClick={handleClick}>
+          <Link to={"/anadidos"} onClick={handleClick}>
             Ver productos
           </Link>
+        </li>
+        <li>
+          <button
+            onClick={signOutUser}
+            className="bg-flora-second px-3 py-2 my-4 rounded-md hover:bg-red-600 transition-all duration-300"
+          >
+            Cerrar sesión
+          </button>
         </li>
       </ul>
     </nav>
