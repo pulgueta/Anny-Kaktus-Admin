@@ -13,6 +13,7 @@ dist-ssr
 *.local
 .env
 api.js
+public
 
 # Editor directories and files
 .vscode/*
