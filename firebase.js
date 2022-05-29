@@ -13,7 +13,7 @@ const firebaseConfig = {
   messagingSenderId: "471743892676",
   // appId: import.meta.VITE_FIREBASE_APP_ID,
   appId: FIREBASE_APP_ID,
-  measurementId: "G-8ZL4G3NL2D"
+  measurementId: "G-8ZL4G3NL2D",
 };
 
 const app = initializeApp(firebaseConfig);

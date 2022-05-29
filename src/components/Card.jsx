@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 const Card = (props) => {
   return (
@@ -15,12 +14,12 @@ const Card = (props) => {
         <div className="flex justify-between items-center">
           <h1 className="font-bold text-xl">{props.price}</h1>
           <div className="flex flex-col text-center">
-            <Link
+            <button
               className="bg-flora-second block cursor-pointer py-2 px-3 rounded-md text-flora-white font-semibold transition-colors duration-300 hover:bg-flora-secondhover"
-              to={`/productos/${props.to}`}
+              onClick={props.removeItem}
             >
-              Ver más
-            </Link>
+              Eliminar
+            </button>
           </div>
         </div>
       </div>

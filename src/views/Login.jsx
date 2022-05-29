@@ -14,7 +14,6 @@ const Login = () => {
     password: "",
   });
 
-
   const navigate = useNavigate();
   const { dispatch } = useContext(AuthContext);
 
@@ -30,7 +29,7 @@ const Login = () => {
       .then((userCredential) => {
         const user = userCredential.user;
         dispatch({ type: "LOGIN", payload: user });
-        toast.success(`Bienvenido(a) ${user.email}`);
+        toast.success('Bienvenido(a) admin');
         navigate("/admin");
       })
       .catch((err) => {
@@ -75,7 +74,7 @@ const Login = () => {
                 type="password"
                 placeholder="********"
                 id={id + 1}
-                autoComplete='off'
+                autoComplete="off"
                 onChange={(e) => setData({ ...data, password: e.target.value })}
                 className="rounded-md shadow-md border-2 w-full outline-flora-base border-neutral-500/5 p-2 my-4"
               />

@@ -29,6 +29,7 @@ const Admin = () => {
 
       return false;
     } else {
+      
       console.log(title, price, description, image);
       await addDoc(productos, {
         title: title,
@@ -47,7 +48,7 @@ const Admin = () => {
         })
         .catch(() => {
           toast.error("Ocurrió un error...");
-        });
+        }); 
     }
   };
 
@@ -112,6 +113,7 @@ const Admin = () => {
         >
           <input
             type="text"
+            maxLength="30"
             autoComplete="off"
             id={id + Date.now()}
             placeholder="Título"

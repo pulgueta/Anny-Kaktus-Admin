@@ -1,16 +1,20 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MenuOutlined, CloseOutlined } from "@ant-design/icons";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const handleClick = () => setIsOpen(!isOpen);
 
+  const navigate = useNavigate();
+
   const signOutUser = () => {
     localStorage.removeItem("user");
+    navigate("/");
     window.location.reload();
   };
+
 
   return (
     <nav className="w-full px-10 h-16 flex justify-end items-center bg-flora-base text-flora-white">
