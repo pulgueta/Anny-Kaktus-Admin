@@ -11,10 +11,9 @@ const Navbar = () => {
 
   const signOutUser = () => {
     localStorage.removeItem("user");
-    navigate("/");
     window.location.reload();
+    navigate("/");
   };
-
 
   return (
     <nav className="w-full px-10 h-16 flex justify-end items-center bg-flora-base text-flora-white">

@@ -11,28 +11,30 @@ import { AuthContext } from "./context/AuthContext";
 
 const App = () => {
   const { currentUser } = useContext(AuthContext);
-  
+
   const RequiredAuth = ({ children }) => {
     return currentUser ? children : <Navigate to="/" />;
   };
 
   return (
     <BrowserRouter>
-     {currentUser ? <Navbar /> : null}
+      {currentUser ? <Navbar /> : null}
       <Routes>
         <Route path="/" element={<Login />} />
         <Route
           path="/admin"
           element={
             <RequiredAuth>
-                <Admin />
+              <Admin />
             </RequiredAuth>
           }
         />
         <Route
           path="/anadidos"
           element={
+            <RequiredAuth>
               <Anadidos />
+            </RequiredAuth>
           }
         />
 

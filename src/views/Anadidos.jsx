@@ -6,6 +6,7 @@ import Card from "../components/Card";
 import { db, productos, storage } from "../../firebase";
 import { formatPrice } from "../functions/formatPrice";
 import { deleteObject, ref } from "firebase/storage";
+import toast, { Toaster } from "react-hot-toast";
 
 const Anadidos = () => {
   const [loading, setLoading] = useState(true);
@@ -25,7 +26,14 @@ const Anadidos = () => {
       .catch((err) => {
         console.log(err);
       });
-    await deleteDoc(doc(db, "productos", item.id));
+
+    await deleteDoc(doc(db, "productos", item.id))
+      .then(() => {
+        toast.success("¡Producto eliminado!");
+      })
+      .catch(() => {
+        toast.error("Error al eliminar el producto");
+      });
     setLoad(true);
   };
 
@@ -49,6 +57,7 @@ const Anadidos = () => {
 
   return (
     <>
+      <Toaster />
       <header className="h-20 flex items-center justify-center bg-white shadow-md">
         <h1 className="text-2xl font-medium">Tus productos añadidos</h1>
       </header>

@@ -29,7 +29,6 @@ const Admin = () => {
 
       return false;
     } else {
-      
       console.log(title, price, description, image);
       await addDoc(productos, {
         title: title,
