@@ -31,4 +31,4 @@ The link to this panel is not going to be available in this repository, but some
 
 
 # This project took around a month and a half to be completely developed and tested.
-## This is going to be the last commit for this project unless it has a maintainance contract with the owner.
+This is going to be the last commit for this project unless it has a maintainance contract with the owner.
