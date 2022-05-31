@@ -8,6 +8,7 @@ import Anadidos from "./views/Anadidos";
 import NotFound from "./views/NotFound";
 
 import { AuthContext } from "./context/AuthContext";
+import Forgot from "./views/Forgot";
 
 const App = () => {
   const { currentUser } = useContext(AuthContext);
@@ -37,6 +38,7 @@ const App = () => {
             </RequiredAuth>
           }
         />
+        <Route path="/restablecer" element={<Forgot />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>

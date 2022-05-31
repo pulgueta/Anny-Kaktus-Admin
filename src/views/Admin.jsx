@@ -11,7 +11,7 @@ const Admin = () => {
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [price, setPrice] = useState();
+  const [price, setPrice] = useState("");
   const [image, setImage] = useState(null);
 
   const addForm = useRef();
@@ -40,7 +40,7 @@ const Admin = () => {
           toast.success("Producto añadido correctamente");
           setTitle("");
           setDescription("");
-          setPrice();
+          setPrice("");
           setImage(null);
 
           addForm.current.reset();
@@ -130,10 +130,10 @@ const Admin = () => {
             className="my-3 p-3 w-full rounded-md border-2 border-gray-200 outline-flora-base"
           />
           <textarea
-            placeholder="Descripción (máx. 23 palabras)"
+            placeholder="Descripción"
             autoComplete="off"
             id={id + Date.now() + 2}
-            maxLength="155"
+            maxLength="120"
             onChange={(e) => setDescription(e.target.value)}
             value={description}
             className="my-3 p-3 w-full rounded-md border-2 border-gray-200 outline-flora-base"

@@ -21,10 +21,14 @@ body {
   }
 
   .nav-link {
-    @apply mx-10 hover:text-flora-hover transition-all duration-300 ease-in;
+    @apply mx-7 hover:text-flora-hover transition-all duration-300 ease-in;
   }
 
   .mobile {
     @apply py-4 text-xl
+  }
+
+  .contactinput {
+    @apply border-b-2 border-flora-black/20 focus:border-flora-base transition-all duration-300 mb-4 py-1 px-3 w-60 lg:w-96 placeholder:text-lg outline-none
   }
 }

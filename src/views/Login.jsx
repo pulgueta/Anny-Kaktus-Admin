@@ -1,5 +1,5 @@
 import React, { useId, useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { HelmetProvider, Helmet } from "react-helmet-async";
 import toast, { Toaster } from "react-hot-toast";
@@ -29,7 +29,7 @@ const Login = () => {
       .then((userCredential) => {
         const user = userCredential.user;
         dispatch({ type: "LOGIN", payload: user });
-        toast.success('Bienvenido(a) admin');
+        toast.success("Bienvenido(a) admin");
         navigate("/admin");
       })
       .catch((err) => {
@@ -78,13 +78,16 @@ const Login = () => {
                 onChange={(e) => setData({ ...data, password: e.target.value })}
                 className="rounded-md shadow-md border-2 w-full outline-flora-base border-neutral-500/5 p-2 my-4"
               />
-              <div className="flex justify-center w-full">
+              <div className="flex flex-col justify-center w-full">
                 <button
                   type="submit"
                   className="bg-flora-second my-3 px-4 py-2 outline-none text-flora-white font-semibold rounded-lg transition-colors duration-300 hover:bg-red-700"
                 >
                   Iniciar sesión
                 </button>
+                <Link to={'/restablecer'} className="my-2 text-center text-black font-normal rounded-lg transition-colors duration-300 hover:text-red-600">
+                  Olvidé mi contraseña
+                </Link>
               </div>
             </div>
           </div>

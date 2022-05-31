@@ -16,7 +16,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="w-full px-10 h-16 flex justify-end items-center bg-flora-base text-flora-white">
+    <nav className="w-full z-20 px-10 h-16 flex justify-end items-center bg-flora-base text-flora-white">
       <ul className="hidden md:flex md:items-center font-medium">
         <motion.li
           initial={{
