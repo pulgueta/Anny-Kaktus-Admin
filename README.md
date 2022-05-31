@@ -14,4 +14,4 @@ The admin panel has the following features:
 
 The link to this panel is not going to be available in this repository, but some screenshots will be attached once the project is finished.
 
-![Login view](loginPanel.png)
+![Login view](/screenshots/loginPanel.png)
