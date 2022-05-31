@@ -18,7 +18,7 @@ The link to this panel is not going to be available in this repository, but some
 ![Login view](https://firebasestorage.googleapis.com/v0/b/anny-kaktus.appspot.com/o/screenshots%2FloginPanel.png?alt=media&token=3d5a989e-78f5-4389-b55d-ea76167e1f72)
 
 ## Forgot password view
-![Forgot password view](https://firebasestorage.googleapis.com/v0/b/anny-kaktus.appspot.com/o/screenshots%2FloginPanel.png?alt=media&token=3d5a989e-78f5-4389-b55d-ea76167e1f72)
+![Forgot password view](https://firebasestorage.googleapis.com/v0/b/anny-kaktus.appspot.com/o/screenshots%2FforgotView.png?alt=media&token=929f2960-ba18-4910-96ab-3a7fa146b5f9)
 
 ## Add product view
 ![Add product view](https://firebasestorage.googleapis.com/v0/b/anny-kaktus.appspot.com/o/screenshots%2FaddProductView.png?alt=media&token=91acd2d9-d997-46d8-8481-a360f1650074)
