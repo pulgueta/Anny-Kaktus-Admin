@@ -82,7 +82,7 @@ const Forgot = () => {
               type="email"
               htmlFor="email"
               name="email"
-              className="contactinput"
+              className="contactinput w-full"
               onChange={(e) => setEmail(e.target.value)}
               id={id}
             />
