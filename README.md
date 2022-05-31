@@ -28,3 +28,7 @@ The link to this panel is not going to be available in this repository, but some
 
 ## Small form to edit a single product
 ![Form to edit a product](https://firebasestorage.googleapis.com/v0/b/anny-kaktus.appspot.com/o/screenshots%2FformToEdit.png?alt=media&token=010b9ebd-5454-40fd-8550-199f6e937321)
+
+
+# This project took around a month and a half to be completely developed and tested.
+## This is going to be the last commit for this project unless it has a maintainance contract with the owner.
