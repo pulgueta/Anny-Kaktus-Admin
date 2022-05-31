@@ -14,4 +14,4 @@ The admin panel has the following features:
 
 The link to this panel is not going to be available in this repository, but some screenshots will be attached once the project is finished.
 
-![Login view](https://prnt.sc/qR4gsZr_7ZW7)
+![Login view](https://firebasestorage.googleapis.com/v0/b/anny-kaktus.appspot.com/o/screenshots%2FloginPanel.png?alt=media&token=3d5a989e-78f5-4389-b55d-ea76167e1f72)
