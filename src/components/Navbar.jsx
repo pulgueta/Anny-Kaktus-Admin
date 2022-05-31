@@ -61,6 +61,24 @@ const Navbar = () => {
               type: "spring",
             },
           }}
+          className="nav-link"
+        >
+          <a href="https://annykaktus.web.app/" target="_blank">
+            Ir a Anny Kactus
+          </a>
+        </motion.li>
+        <motion.li
+          initial={{
+            opacity: 0,
+          }}
+          animate={{
+            opacity: 1,
+            transition: {
+              duration: 1,
+              delay: 0.5,
+              type: "spring",
+            },
+          }}
         >
           <button
             onClick={signOutUser}
@@ -93,8 +111,8 @@ const Navbar = () => {
       <ul
         className={
           !isOpen
-            ? "absolute top-[-100%] left-0 w-screen h-[50vh] bg-flora-base flex flex-col justify-center items-center rounded-b-2xl ease-in-out duration-1000"
-            : "absolute top-[50px] left-0 w-screen h-[40vh] bg-flora-base shadow-sm flex flex-col justify-center items-center rounded-b-2xl ease-in-out duration-1000"
+            ? "absolute top-[-100%] left-0 w-screen h-[40vh] bg-flora-base flex flex-col justify-center items-center rounded-b-2xl ease-in-out duration-1000"
+            : "absolute top-[50px] left-0 w-screen h-[50vh] bg-flora-base shadow-sm flex flex-col justify-center items-center rounded-b-2xl ease-in-out duration-1000"
         }
       >
         <li className="mobile">
@@ -107,6 +125,15 @@ const Navbar = () => {
             Ver productos
           </Link>
         </li>
+        <motion.li className="mobile">
+          <a
+            href="https://annykaktus.web.app/"
+            target="_blank"
+            onClick={handleClick}
+          >
+            Ir a Anny Kactus
+          </a>
+        </motion.li>
         <li>
           <button
             onClick={signOutUser}
