@@ -63,7 +63,7 @@ const Navbar = () => {
           }}
           className="nav-link"
         >
-          <a href="https://annykaktus.web.app/" target="_blank">
+          <a href="https://annykactus.com/" target="_blank">
             Ir a Anny Kactus
           </a>
         </motion.li>
@@ -127,7 +127,7 @@ const Navbar = () => {
         </li>
         <motion.li className="mobile">
           <a
-            href="https://annykaktus.web.app/"
+            href="https://annykactus.com/"
             target="_blank"
             onClick={handleClick}
           >
