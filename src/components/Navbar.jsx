@@ -57,7 +57,7 @@ const Navbar = () => {
             opacity: 1,
             transition: {
               duration: 1,
-              delay: 0.5,
+              delay: 0.75,
               type: "spring",
             },
           }}
