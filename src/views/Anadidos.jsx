@@ -20,7 +20,7 @@ const Anadidos = () => {
   const id = useId();
 
   const removeItem = async (item) => {
-    const imgRef = ref(storage, item.url);
+    const imgRef = ref(storage, item.url);      // Referencia a la imagen y su URL
 
     await deleteObject(imgRef)
       .then((res) => {
@@ -30,9 +30,9 @@ const Anadidos = () => {
         console.log(err);
       });
 
-    await deleteDoc(doc(db, "productos", item.id))
+    await deleteDoc(doc(db, "productos", item.id))      // Referencia a qué se quiere eliminar
       .then(() => {
-        toast.success("¡Producto eliminado!");
+        toast.success("¡Producto eliminado!");        // si se elimina correctamente, se muestra un mensaje de éxito
       })
       .catch(() => {
         toast.error("Error al eliminar el producto");
@@ -42,7 +42,7 @@ const Anadidos = () => {
 
   const editItem = async (id, newTitle, newDescription, newPrice) => {
     const productDoc = doc(db, "productos", id);
-    const editField = {
+    const editField = {     // se actualiza el producto con los datos ingresados, primeramente preservando los datos originales
       title: newTitle,
       description: newDescription,
       price: parseInt(newPrice),
@@ -53,7 +53,7 @@ const Anadidos = () => {
   };
 
   const handleDataEdit = (itemEdit) => {
-    setNewInfo(itemEdit);
+    setNewInfo(itemEdit);   // se guardan los datos del producto que se va a editar
     openForm();
   };
   const openForm = () => setModal(true);
@@ -65,7 +65,7 @@ const Anadidos = () => {
         setLoad(false);
       }
       const data = await getDocs(productos);
-      setProduct(
+      setProduct(         // Cada que cargue la página, se cargan los productos
         data.docs.map((doc) => ({
           ...doc.data(),
           id: doc.id,

@@ -15,13 +15,12 @@ const Admin = () => {
   const [image, setImage] = useState(null);
 
   const addForm = useRef();
-  // esto es cuando se le da al botón
 
   const createProduct = async (e) => {
     e.preventDefault();
     if (
       title.length === 0 ||
-      price.length === 0 ||
+      price.length === 0 ||       // si no hay nada en los campos, no se puede crear
       description.length === 0 ||
       image === null
     ) {
@@ -30,7 +29,7 @@ const Admin = () => {
       return false;
     } else {
       console.log(title, price, description, image);
-      await addDoc(productos, {
+      await addDoc(productos, {     // se agrega el producto a la base de datos con los datos ingresados
         title: title,
         price: parseInt(price),
         description: description,
@@ -46,7 +45,7 @@ const Admin = () => {
           addForm.current.reset();
         })
         .catch(() => {
-          toast.error("Ocurrió un error...");
+          toast.error("Ocurrió un error..."); // si hay un error, se muestra un mensaje de error
         }); 
     }
   };
@@ -58,7 +57,7 @@ const Admin = () => {
     // if (setImage === null) return;
     const imgRef = ref(
       storage,
-      `productsImages/${Date.now() + event.target.files[0].name}`
+      `productsImages/${Date.now() + event.target.files[0].name}` // se crea una referencia a la imagen
     );
     const imgUpload = uploadBytesResumable(imgRef, event.target.files[0]);
 
@@ -67,7 +66,7 @@ const Admin = () => {
       (snapshot) => {
         const progress =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        toast("Subida al " + progress + "%", {
+        toast("Subida al " + progress + "%", {      // se muestra el progreso de la subida
           icon: "🥸",
           duration: 1000,
         });
@@ -88,7 +87,6 @@ const Admin = () => {
       },
       () => {
         getDownloadURL(imgUpload.snapshot.ref).then((url) => {
-          console.log(`file available at ${url}`);
           setImage(url);
         });
       }

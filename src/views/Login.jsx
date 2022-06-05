@@ -21,19 +21,19 @@ const Login = () => {
     e.preventDefault();
 
     if (data.email.length === 0 || data.password.length === 0) {
-      toast.error("¡Debes llenar todos los campos!");
+      toast.error("¡Debes llenar todos los campos!"); // si no hay nada en los campos, no se puede crear
       return false;
     }
 
     signInWithEmailAndPassword(auth, data.email, data.password)
-      .then((userCredential) => {
+      .then((userCredential) => {         // si se logra loguear, se muestra un mensaje de éxito y se envía al reducer
         const user = userCredential.user;
         dispatch({ type: "LOGIN", payload: user });
         toast.success("Bienvenido(a) admin");
         navigate("/admin");
       })
       .catch((err) => {
-        toast.error("Error al iniciar sesión");
+        toast.error("Error al iniciar sesión");   // si hay un error, se muestra un mensaje de error
       });
   };
   return (

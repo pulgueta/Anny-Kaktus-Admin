@@ -14,19 +14,19 @@ const App = () => {
   const { currentUser } = useContext(AuthContext);
 
   const RequiredAuth = ({ children }) => {
-    return currentUser ? children : <Navigate to="/" />;
+    return currentUser ? children : <Navigate to="/" />; // si no esta autenticado, redirige a la pagina de inicio, si sí, muestra el contenido
   };
 
   return (
     <BrowserRouter>
-      {currentUser ? <Navbar /> : null}
+      {currentUser ? <Navbar /> : null} {/* Si hay usuario, muestra navbar, si no hay, la borra */}
       <Routes>
         <Route path="/" element={<Login />} />
         <Route
           path="/admin"
           element={
             <RequiredAuth>
-              <Admin />
+              <Admin />       {/* Ruta protegida */}
             </RequiredAuth>
           }
         />
@@ -34,7 +34,7 @@ const App = () => {
           path="/anadidos"
           element={
             <RequiredAuth>
-              <Anadidos />
+              <Anadidos />    {/* Ruta protegida */}
             </RequiredAuth>
           }
         />
