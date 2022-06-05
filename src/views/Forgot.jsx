@@ -38,8 +38,8 @@ const Forgot = () => {
           setEmail("");
           form.current.reset();
         })
-        .catch((err) => {
-          toast(err.message, {
+        .catch(() => {
+          toast("¡No eres admin!", {
             duration: 1250,
             icon: "🤨",
           });
