@@ -29,23 +29,30 @@ const Forgot = () => {
         duration: 1000,
       });
     } else {
-      await sendPasswordResetEmail(auth, email)
-        .then(() => {
-          toast("¡Revisa tu correo!", {
-            type: "success",
-            duration: 1000,
+      if (email === "lauraamarism@hotmail.com") {
+        await sendPasswordResetEmail(auth, email)
+          .then(() => {
+            toast("¡Revisa tu correo!", {
+              type: "success",
+              duration: 1000,
+            });
+            setEmail("");
+            form.current.reset();
+          })
+          .catch(() => {
+            toast("¡Ocurrió un error!", {
+              duration: 1250,
+              icon: "😱",
+            });
+            setEmail("");
+            form.current.reset();
           });
-          setEmail("");
-          form.current.reset();
-        })
-        .catch(() => {
-          toast("¡No eres admin!", {
-            duration: 1250,
-            icon: "🤨",
-          });
-          setEmail("");
-          form.current.reset();
+      } else {
+        toast("¡No eres admin!", {
+          icon: "🤨",
+          duration: 2000,
         });
+      }
     }
   };
 
@@ -93,7 +100,12 @@ const Forgot = () => {
             >
               Recuperar contraseña
             </button>
-            <Link to={"/"} className="text-center mt-4 hover:text-red-600 transition-all duration-300">Volver</Link>
+            <Link
+              to={"/"}
+              className="text-center mt-4 hover:text-red-600 transition-all duration-300"
+            >
+              Volver
+            </Link>
           </motion.form>
         </div>
       </div>
